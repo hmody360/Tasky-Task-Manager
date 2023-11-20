@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/70c1e0c780.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="boardspage.css">
     <title>My Boards</title>
 </head>
-<body>
-    
+
+<body class="body">
+    <nav class="nav">
+        <input type="checkbox" id="nav-checkbox">
+        <label for="nav-checkbox" class="checkBtn"><i class="fa-solid fa-bars"></i></label>
+        <label class="logo"><i class="fa-solid fa-clipboard"></i> Tasky</label>
+        <ul class="navbar-list">
+            <li class="navbar-item"><a href="index.html">Home</a></li>
+            <li class="navbar-item"><a href="boards.html" class="active-link">My Boards</a></li>
+            <li class="navbar-item"><a href="#">About</a></li>
+            <li class="navbar-item"><a href="#">Feedback</a></li>
+        </ul>
+    </nav>
+    <section class="page-container">
+        <div class="main-container">
+            <h2 id="myboards-header">My Boards</h2>
+            <div class="board-container" id="board-container">
+                <button class="add-board" id="add-board-Btn"><i class="fa-solid fa-plus fa-fade"></i></button>
+
+            </div>
+        </div>
+    </section>
+    <div class="add-board-modal-container" id="add-board-modal-container">
+        <div class="add-board-modal" id="add-board-modal">
+            <i class="fa-solid fa-xmark" id="close-modal"></i>
+            <form class="board-form">
+                <label class="modal-header">Board name:</label>
+                <input type="text" id="board-name">
+                <label class="modal-header">Board Background:</label>
+                <div class="modal-bg-generator">
+                    <div id="modal-bg-img"></div>
+                    <button id="generate-bg-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+                <button id="create-btn">Create</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
