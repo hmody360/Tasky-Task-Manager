@@ -20,8 +20,8 @@
 }
 .board-container {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 .add-board {
