@@ -14,7 +14,8 @@
     color: var(--main-text-color);
 }
 .body {
-    font-family: var(--main-font-family)
+    font-family: var(--main-font-family);
+    min-width: 200px;
 }
 .nav {
     background: var(--main-blue-color);

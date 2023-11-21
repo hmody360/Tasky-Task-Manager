@@ -33,6 +33,28 @@
     border-radius: 10px;
     font-size: 25px;
 }
+.board-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 80px;
+    padding: 9px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.board-tab:hover {
+    transition: all .5s ease;
+    font-weight: 800;
+}
+.board-tab i:hover {
+    transition: all .5s ease;
+    color: red;
+}
 .add-board:hover {
     border: 2px solid rgba(0,0,0,0.3);
     cursor: pointer;
@@ -83,7 +105,6 @@
     height: 80px;
 }
 #modal-bg-img {
-    background: url(images/homepage-bg.avif);
     background-repeat: no-repeat;
     background-size: cover;
     width: 200px;
@@ -92,6 +113,15 @@
 }
 #board-name {
     width: 200px;
+    color: black;
+}
+#no-name-error {
+    display: none;
+    width: fit-content;
+    background: rgba(0,0,0,0.1);
+    color: white;
+    font-size: 11px;
+    margin-top: 2px;
 }
 #generate-bg-btn {
     margin-left: 40px;

@@ -27,7 +27,6 @@
             <h2 id="myboards-header">My Boards</h2>
             <div class="board-container" id="board-container">
                 <button class="add-board" id="add-board-Btn"><i class="fa-solid fa-plus fa-fade"></i></button>
-
             </div>
         </div>
     </section>
@@ -36,7 +35,10 @@
             <i class="fa-solid fa-xmark" id="close-modal"></i>
             <form class="board-form">
                 <label class="modal-header">Board name:</label>
-                <input type="text" id="board-name">
+                <div>
+                    <input type="text" id="board-name" placeholder="Enter Board Name" maxlength="20">
+                    <p id="no-name-error">* Please Enter a name</p>
+                </div>
                 <label class="modal-header">Board Background:</label>
                 <div class="modal-bg-generator">
                     <div id="modal-bg-img"></div>
