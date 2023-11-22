@@ -9,14 +9,53 @@ const generateBGBtn = document.getElementById("generate-bg-btn")
 const createBtn = document.getElementById("create-btn")
 const noNameError = document.getElementById("no-name-error")
 
-const Arr = []
+const initializeStorage = () => {
+    if (localStorage.length == 0){
+        const arr = []
+        const JSONEDArr = JSON.stringify(arr)
+        localStorage.setItem("boards", JSONEDArr)
+        localStorage.setItem("boardID", JSONEDArr)
+    }
+}
+const setActiveBoard = (board) => {
+    for (let i = 0; i< board.length; i++){
+        board[i].onclick = () => {
+            localStorage.setItem("activeBoard", board[i].id)
+        }
+    }
+}
+const removeBoard = (board) => {
+    for(let i = 0; i < board.length; i++){
+        let removeableElement = board[i].parentNode
+        board[i].onclick = () => {
+            console.log(removeableElement.id);
+            removeableElement.href = "#"
+            const boardArr = JSON.parse(localStorage.getItem("boards"))
+            const removeableObj = boardArr.findIndex(obj => obj.id == removeableElement.id)
+            console.log(removeableObj);
+            boardArr.splice(Number(removeableObj),1)
+            
+            const boardIDArr = JSON.parse(localStorage.getItem("boardID"))
+            const falseObject = boardIDArr.find(obj => obj.id == removeableElement.id)
+            console.log(falseObject);
+            falseObject.status = false
+            localStorage.setItem("boards", JSON.stringify(boardArr))
+            localStorage.setItem("boardID", JSON.stringify(boardIDArr))
+            removeableElement.parentNode.removeChild(removeableElement)
+        }
+
+    }
+        
+    
+}
 const allocateID = () => {
     const idArr = JSON.parse(localStorage.getItem("boardID"))
     if (idArr.length > 0) {
-        idArr.forEach = (obj) => {
-            if (obj.status = false) {
-                return Number(obj.id)
-            }
+        let obj = idArr.find(obj => obj.status == false)
+        if (obj != undefined){
+            obj.status = true
+        localStorage.setItem("boardID", JSON.stringify(idArr))
+        return obj.id
         }
     }
         const boardIDObj = {
@@ -47,13 +86,19 @@ const PullObjFromStorage = () => {
             boardArr.forEach(Obj => {
                 const board = document.createElement("a");
                 board.className = "board-tab"
-                board.id = "board-tab"
+                board.id = Obj.id
                 board.href = "boardPage.html"
                 board.style.backgroundImage = Obj.bg
                 board.innerHTML = `<label>${Obj.name}</label><i class="fa-solid fa-trash" id="delete-board"></i>`
                 boardContainer.appendChild(board)
             })
         };
+        const boardList = document.querySelectorAll(".board-tab")
+        const deleteBoard = document.querySelectorAll("#delete-board")
+        console.log(boardList);
+        console.log(deleteBoard);
+        setActiveBoard(boardList)
+        removeBoard(deleteBoard)
     }
 }
 const touchAddBtn = () => {
@@ -78,9 +123,11 @@ const closeModal = () => {
         if (event.currentTarget == event.target) {
             modalContainer.style.display = "none"
         }
+        setDefaultBackground()
     })
     closeModalBtn.onclick = () => {
         modalContainer.style.display = "none"
+        setDefaultBackground()
     }
 }
 const generateBG = async () => {
@@ -111,10 +158,12 @@ const createBoard = () => {
             PushObjToStorage(boardName.value, board.style.backgroundImage, board.id)
             boardName.value = ""
             modalContainer.style.display = "none"
+            setDefaultBackground()
         }
     })
 }
 
+initializeStorage()
 PullObjFromStorage()
 setDefaultBackground()
 touchAddBtn()
@@ -125,4 +174,7 @@ generateBGBtn.addEventListener('click', (event) => {
     generateBG()
 })
 createBoard()
-console.log(localStorage);
+// const arr = []
+// localStorage.setItem("boardID", JSON.stringify(arr))
+
+console.log(localStorage)
