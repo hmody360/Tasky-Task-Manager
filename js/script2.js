@@ -12,10 +12,13 @@ const modalTaskName = document.getElementById("modal-task-name")
 const noNameError = document.getElementById("no-name-error")
 const modalTaskDesc = document.getElementById("modal-task-desc")
 const modalTaskTag = document.getElementById("modal-task-tag")
+const deleteListBtn = document.querySelectorAll(".delete-list-btn")
+const deleteTaskBtn = document.querySelectorAll(".delete-task-btn")
 const tagColors = document.getElementsByName("tag-color")
 const createTaskBtn = document.getElementById("create-task-btn")
 const draggables = document.querySelectorAll(".task");
 const droppables = document.querySelectorAll(".list");
+
 
 let currentList = 0
 window.onload = () => {
@@ -70,6 +73,11 @@ const loadContentFromStorage = () => {
     const draggables = document.querySelectorAll(".task");
     const droppables = document.querySelectorAll(".list");
     dd(draggables, droppables)
+
+    const deleteListBtn = document.querySelectorAll(".delete-list-btn")
+    const deleteTaskBtn = document.querySelectorAll(".delete-task-btn")
+    deleteList(deleteListBtn)
+    deleteTask(deleteTaskBtn)
 }
 const dd = (drags, drops) => {
     drags.forEach((task) => {
@@ -124,13 +132,16 @@ const addNewList = (addlist, addinput, addbtn) => {
         const newList = document.createElement("div")
         newList.classList.add("list")
         newList.id = "list"
-        newList.innerHTML = `<div class="list-info"><h3 id="list-name">${addinput.value}</h3><button class="add-task-btn"><i class="fa-solid fa-plus"></i></button></div>`
+        newList.innerHTML = `<div class="list-info"><h3 id="list-name">${addinput.value}</h3><button class="delete-list-btn"><i class="fa-solid fa-trash"></i></button><button class="add-task-btn"><i class="fa-solid fa-plus"></i></button></div>`
         listContainer.insertBefore(newList, addlist)
         const addTaskBtn = document.querySelectorAll(".add-task-btn") //I'm going to have so much fun explaining this one ;)
         openTaskModal(addTaskBtn)
         const draggables = document.querySelectorAll(".task");
         const droppables = document.querySelectorAll(".list");
         dd(draggables, droppables)
+        const deleteListBtn = document.querySelectorAll(".delete-list-btn")
+        deleteList(deleteListBtn)
+
     }
 
 }
@@ -166,7 +177,7 @@ const addNewTask = () => {
 
             if (modalTaskTag.value.trim() == "") {
                 newTask.innerHTML = `<p class="task-name">${modalTaskName.value}</p>
-                <p class="task-desc">${modalTaskDesc.value}</p>`
+                <p class="task-desc">${modalTaskDesc.value}</p><button class="delete-task-btn"><i class="fa-solid fa-trash"></i></button>`
                 currentList.appendChild(newTask)
                 modalTaskName.value = ""
                 modalTaskDesc.value = ""
@@ -180,7 +191,7 @@ const addNewTask = () => {
                 if (color == "random") {
                     color = `rgb(${Math.round(Math.random() * 256)}, ${Math.round(Math.random() * 256)}, ${Math.round(Math.random() * 256)})`
                 }
-                newTask.innerHTML = `<p class="task-name">${modalTaskName.value}</p><p class="task-tag" style="background: ${color};">${modalTaskTag.value}</p><p class="task-desc">${modalTaskDesc.value}</p>`
+                newTask.innerHTML = `<p class="task-name">${modalTaskName.value}</p><p class="task-tag" style="background: ${color};">${modalTaskTag.value}</p><p class="task-desc">${modalTaskDesc.value}</p><button class="delete-task-btn"><i class="fa-solid fa-trash"></i></button>`
                 currentList.appendChild(newTask)
                 modalTaskName.value = ""
                 modalTaskDesc.value = ""
@@ -189,15 +200,34 @@ const addNewTask = () => {
             const draggables = document.querySelectorAll(".task");
             const droppables = document.querySelectorAll(".list");
             dd(draggables, droppables)
+            const deleteTaskBtn = document.querySelectorAll(".delete-task-btn")
+            deleteTask(deleteTaskBtn)
         }
     })
 
 
 }
+const deleteList = (btns) => {
+    btns.forEach((btn) => {
+        btn.onclick = () => {
+            btn.parentElement.parentElement.remove()
+        }
+    })
+}
+const deleteTask = (btns) => {
+    btns.forEach((btn) => {
+        btn.onclick = () => {
+            btn.parentElement.remove()
+        }
+    })
+}
+
 dd(draggables, droppables)
 getBoardInfo()
 addNewList(addList, addListInput, addListBtn)
 addNewTask()
 openTaskModal(addTaskBtn)
 closeTaskModal()
+deleteList(deleteListBtn)
+deleteTask(deleteTaskBtn)
 

@@ -1,8 +1,8 @@
 :root {
     --main-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    --main-blue-color: #0098ff;
+    --main-blue-color: var(--main-blue-color);
     --secondary-blue-color: #0066aa;
-    --main-orange-color: #FF6700;
+    --main-orange-color: var(--main-orange-color);
     --main-text-color: rgb(250, 250, 250);
     --tag-square-width-height: 10px;
 }
@@ -55,25 +55,48 @@
     width: 150px;
     height: 25px;
     border-radius: 10px;
-    border-color: #0098ff;
+    border-color: var(--main-blue-color);
     padding-left: 8px;
     color: black;
 }
 #add-list-input:focus {
-    outline-color: #FF6700;
+    outline-color: var(--main-orange-color);
 }
 #add-list-btn, .add-task-btn {
     width: 20px;
     height: 20px;
     border-radius: 5px;
-    border-color: #0098ff;
+    border-color: var(--main-blue-color);
 }
 #add-list-btn:hover, .add-task-btn:hover {
-    border-color: #FF6700;
+    border-color: var(--main-orange-color);
     cursor: pointer;
 }
 #add-list-btn i, .add-task-btn i {
     color: black;
+}
+.delete-list-btn{
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border-color: rgb(255, 0, 0);
+    margin-left: 70px;
+}
+.delete-task-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border-color: rgb(255, 0, 0);
+    align-self: flex-end;
+    margin-right: 10px;
+
+}
+.delete-list-btn:hover, .delete-task-btn:hover {
+    border-color: crimson;
+    cursor: pointer;
+}
+.delete-list-btn i, .delete-task-btn i {
+    color: rgb(40,40,40);
 }
 .list {
     width: 200px;
@@ -93,7 +116,7 @@
     justify-content: space-between;
 }
 #list-name {
-    font-size: 22px;
+    font-size: 16px;
 }
 .task {
     display: flex;
@@ -106,6 +129,7 @@
     border-radius: 10px;
     cursor: move;
 }
+
 .task-name {
     font-size: 16px;
     font-weight: bold;
@@ -114,7 +138,6 @@
     font-size: 14px;
     width: fit-content;
     padding: 3px 5px;
-    /* background-color: red; */
     border-radius: 10px;
 }
 .task-desc {
