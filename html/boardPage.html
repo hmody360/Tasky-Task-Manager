@@ -7,7 +7,7 @@
     <script src="https://kit.fontawesome.com/70c1e0c780.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/boardsPage.css">
     <link rel="stylesheet" href="/css/main.css">
-    <title>Document</title>
+    <title id="title">Document</title>
 </head>
 
 <body class="body">
@@ -26,10 +26,51 @@
         <div class="main-container">
             <h2 id="board-name-header">My Boards</h2>
             <div class="list-container" id="list-container">
-                
+                <div class="list" id="list">
+                    <div class="list-info">
+                        <h3 id="list-name">To do</h3>
+                        <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="task" draggable="true">
+                        <p class="task-name">Do something</p>
+                        <p class="task-tag"></p>
+                        <p class="task-desc">Bruh</p>
+                    </div>
+                </div>
+                <div class="add-list" id="add-list">
+                    <input type="text" placeholder="Add new list..." id="add-list-input">
+                    <button id="add-list-btn"><i class="fa-solid fa-plus"></i></button>
+                </div>
             </div>
         </div>
     </section>
+    <div class="add-task-modal-container" id="add-task-modal-container">
+        <div class="add-task-modal" id="add-task-modal">
+            <i class="fa-solid fa-xmark" id="close-modal"></i>
+            <form class="task-form">
+                <label class="modal-header">Task name:</label>
+                <div>
+                    <input type="text" id="modal-task-name" placeholder="Enter Task">
+                    <p id="no-name-error">* Please Enter a task</p>
+                </div>
+                <label class="modal-header">Task Description:</label>
+                <textarea id="modal-task-desc" cols="10" rows="8" placeholder="Enter Task Description"></textarea>
+                <label class="modal-header">Task Tag:</label>
+                <input type="text" id="modal-task-tag" placeholder="Enter Task Tag" maxlength="23">
+                <div class="tag-container">
+                    <div id="square-red"></div>
+                    <input type="radio" name="tag-color" value="red">
+                    <div id="square-green"></div>
+                    <input type="radio" name="tag-color" value="green">
+                    <div id="square-blue"></div>
+                    <input type="radio" name="tag-color" value="blue">
+                    <div id="square-random"></div>
+                    <input type="radio" name="tag-color" value="random" checked="true">
+                </div>
+                <button id="create-task-btn">Add Task</button>
+            </form>
+        </div>
+    </div>
     <script src="/js/script2.js"></script>
 </body>
 
