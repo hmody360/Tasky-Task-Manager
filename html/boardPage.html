@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css">
     <script src="https://kit.fontawesome.com/70c1e0c780.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/boardsPage.css">
     <link rel="stylesheet" href="/css/main.css">
     <title id="title">Document</title>
 </head>
 
-<body class="body">
+<body class="body" id="body">
     <nav class="nav">
         <input type="checkbox" id="nav-checkbox">
         <label for="nav-checkbox" class="checkBtn"><i class="fa-solid fa-bars"></i></label>
@@ -29,8 +30,10 @@
                 <div class="list" id="list">
                     <div class="list-info">
                         <h3 id="list-name">To do</h3>
-                        <button class="delete-list-btn"><i class="fa-solid fa-trash"></i></button>
-                        <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
+                        <div class="list-info-btns">
+                            <button class="delete-list-btn"><i class="fa-solid fa-trash"></i></button>
+                            <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
+                        </div>
                     </div>
                     <div class="task" draggable="true">
                         <p class="task-name">Do something wild</p>
@@ -73,6 +76,7 @@
             </form>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
     <script src="/js/script2.js"></script>
 </body>
 

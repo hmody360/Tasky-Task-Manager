@@ -80,7 +80,7 @@
     height: 20px;
     border-radius: 5px;
     border-color: rgb(255, 0, 0);
-    margin-left: 70px;
+    /* margin-left: 70px; */
 }
 .delete-task-btn {
     width: 20px;
@@ -111,9 +111,15 @@
     flex-shrink: 0;
 }
 .list-info {
+    height: fit-content;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.list-info-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 #list-name {
     font-size: 16px;

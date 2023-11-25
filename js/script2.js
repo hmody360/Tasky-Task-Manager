@@ -73,12 +73,29 @@ const loadContentFromStorage = () => {
     const draggables = document.querySelectorAll(".task");
     const droppables = document.querySelectorAll(".list");
     dd(draggables, droppables)
+    // ddDragula(droppables)
 
     const deleteListBtn = document.querySelectorAll(".delete-list-btn")
     const deleteTaskBtn = document.querySelectorAll(".delete-task-btn")
     deleteList(deleteListBtn)
     deleteTask(deleteTaskBtn)
 }
+// const ddDragula = (containers) => {
+//     let arr = []
+//     containers.forEach((element) => {
+//         arr.push(element)
+//     })
+//     dragula({
+//         containers: arr,
+//         moves: function (el) {
+//             // Make list info non-draggable
+//             return !el.classList.contains("list-info");
+//         },
+//         accepts: function (el, target, source, sibling) {
+//             return !source.classList.contains("list-info");
+//         }
+//     });
+// }
 const dd = (drags, drops) => {
     drags.forEach((task) => {
         task.addEventListener("dragstart", () => {
@@ -132,12 +149,14 @@ const addNewList = (addlist, addinput, addbtn) => {
         const newList = document.createElement("div")
         newList.classList.add("list")
         newList.id = "list"
-        newList.innerHTML = `<div class="list-info"><h3 id="list-name">${addinput.value}</h3><button class="delete-list-btn"><i class="fa-solid fa-trash"></i></button><button class="add-task-btn"><i class="fa-solid fa-plus"></i></button></div>`
+        newList.innerHTML = `<div class="list-info"><h3 id="list-name">${addinput.value}</h3><div class="list-info-btns"><button class="delete-list-btn"><i class="fa-solid fa-trash"></i></button><button class="add-task-btn"><i class="fa-solid fa-plus"></i></button></div></div>`
         listContainer.insertBefore(newList, addlist)
+        addinput.value = ""
         const addTaskBtn = document.querySelectorAll(".add-task-btn") //I'm going to have so much fun explaining this one ;)
         openTaskModal(addTaskBtn)
         const draggables = document.querySelectorAll(".task");
         const droppables = document.querySelectorAll(".list");
+        // ddDragula(droppables)
         dd(draggables, droppables)
         const deleteListBtn = document.querySelectorAll(".delete-list-btn")
         deleteList(deleteListBtn)
@@ -149,7 +168,7 @@ const openTaskModal = (btns) => {
     btns.forEach((btn) => {
         btn.onclick = () => {
             addTaskModalContainer.style.display = "flex"
-            currentList = btn.parentNode.parentNode
+            currentList = btn.parentNode.parentNode.parentNode
         }
     })
 }
@@ -200,6 +219,7 @@ const addNewTask = () => {
             const draggables = document.querySelectorAll(".task");
             const droppables = document.querySelectorAll(".list");
             dd(draggables, droppables)
+            // ddDragula(droppables)
             const deleteTaskBtn = document.querySelectorAll(".delete-task-btn")
             deleteTask(deleteTaskBtn)
         }
@@ -223,6 +243,7 @@ const deleteTask = (btns) => {
 }
 
 dd(draggables, droppables)
+// ddDragula(droppables)
 getBoardInfo()
 addNewList(addList, addListInput, addListBtn)
 addNewTask()
