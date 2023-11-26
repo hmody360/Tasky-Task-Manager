@@ -72,7 +72,7 @@ const loadContentFromStorage = () => {
 
     const draggables = document.querySelectorAll(".task");
     const droppables = document.querySelectorAll(".list");
-    dd(draggables, droppables)
+    dragAndDrop(draggables, droppables)
     // ddDragula(droppables)
 
     const deleteListBtn = document.querySelectorAll(".delete-list-btn")
@@ -96,7 +96,7 @@ const loadContentFromStorage = () => {
 //         }
 //     });
 // }
-const dd = (drags, drops) => {
+const dragAndDrop = (drags, drops) => {
     drags.forEach((task) => {
         task.addEventListener("dragstart", () => {
             task.classList.add("is-dragging");
@@ -157,7 +157,7 @@ const addNewList = (addlist, addinput, addbtn) => {
         const draggables = document.querySelectorAll(".task");
         const droppables = document.querySelectorAll(".list");
         // ddDragula(droppables)
-        dd(draggables, droppables)
+        dragAndDrop(draggables, droppables)
         const deleteListBtn = document.querySelectorAll(".delete-list-btn")
         deleteList(deleteListBtn)
 
@@ -218,7 +218,7 @@ const addNewTask = () => {
             }
             const draggables = document.querySelectorAll(".task");
             const droppables = document.querySelectorAll(".list");
-            dd(draggables, droppables)
+            dragAndDrop(draggables, droppables)
             // ddDragula(droppables)
             const deleteTaskBtn = document.querySelectorAll(".delete-task-btn")
             deleteTask(deleteTaskBtn)
@@ -242,7 +242,7 @@ const deleteTask = (btns) => {
     })
 }
 
-dd(draggables, droppables)
+dragAndDrop(draggables, droppables)
 // ddDragula(droppables)
 getBoardInfo()
 addNewList(addList, addListInput, addListBtn)
